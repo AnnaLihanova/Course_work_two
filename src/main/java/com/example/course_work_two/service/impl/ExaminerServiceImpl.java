@@ -10,8 +10,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class ExaminerServiceImpl implements ExaminerService {
-
-    private Random random;
+    private final Random random = new Random();
     private final JavaQuestionService questionService;
 
     public ExaminerServiceImpl(JavaQuestionService questionService) {

@@ -2,7 +2,6 @@ package com.example.course_work_two.controller;
 
 import com.example.course_work_two.data.Question;
 import com.example.course_work_two.service.QuestionService;
-import com.example.course_work_two.service.impl.JavaQuestionService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +34,11 @@ public class JavaQuestionController {
     @GetMapping(path = "/java")
     public Collection<Question> getAllQuestions() {
         return service.getAll();
+    }
+
+    @GetMapping(path = "/java/random")
+    public Question getRandomQuestions() {
+        return service.getRandomQuestion();
     }
 
 }

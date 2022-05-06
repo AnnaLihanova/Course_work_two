@@ -1,6 +1,7 @@
 package com.example.course_work_two.service.impl;
 
 import com.example.course_work_two.data.Question;
+import com.example.course_work_two.exception.IllegalNameOfQuestionOrAnswer;
 import com.example.course_work_two.exception.QuestionNotFoundException;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,11 @@ class JavaQuestionServiceTest {
         assertEquals(expected, out.add(FIRST_QUESTION, FIRST_ANSWER));
         assertEquals(1, out.getAll().size());
         assertTrue(out.getAll().contains(expected));
+    }
+
+    @Test
+    void shouldAnswerAndQuestionNotTheSame() {
+        assertThrows(IllegalNameOfQuestionOrAnswer.class, () -> out.add(BAD_QUESTION, BAD_ANSWER));
     }
 
     @Test
@@ -50,8 +56,13 @@ class JavaQuestionServiceTest {
     }
 
     @Test
-    void getRandomQuestion() {
+    void shouldGetRandomQuestion() {
         out.add(QUESTION_ANSWER_1);
         assertEquals(QUESTION_ANSWER_1, out.getRandomQuestion());
+    }
+
+    @Test
+    void shouldListIsEmpty() {
+        assertThrows(QuestionNotFoundException.class, () -> out.getRandomQuestion());
     }
 }
