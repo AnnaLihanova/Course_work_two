@@ -9,7 +9,11 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/exam")
 public class ExamController {
-    ExaminerService examinerService;
+    private final ExaminerService examinerService;
+
+    public ExamController(ExaminerService examinerService) {
+        this.examinerService = examinerService;
+    }
 
     @GetMapping(path = "/get/{amount}")
     public Collection<Question> getQuestions(@PathVariable int amount) {
